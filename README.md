@@ -1,5 +1,7 @@
 # Flutter 中如何绘制动画
+
 ### 首先是绘图
+
 在Flutter中绘图非常简单。关键词`CustomPainter`, `CustomPaint`, `Canvas`。
 
 在iOS/Android中我们继承`UIView/View`重写`draw/onDraw`方法在里面执行画图操作。
@@ -9,6 +11,7 @@
 实现`void paint(Canvas canvas, Size size)`这个方法，在iOS中我们使用`UIBezierPath`和`Core Graphics`绘图，在Flutter具体的绘制方法用这个`canvas`, 具体的API可以查看[官方文档](https://docs.flutter.io/flutter/dart-ui/Canvas-class.html)
 
 下面这个例子就是画一段圆弧
+
 ```dart
 class DemoPainter extends CustomPainter {
   final double _arcStart;
@@ -34,7 +37,9 @@ class DemoPainter extends CustomPainter {
   }
 }
 ```
+
 使用的时候把`DemoPainter`的实例当做参数传给`CustomPaint`就可以使用了，比如
+
 ```dart
 Container(
   child: CustomPaint(painter: DemoPainter(0.0, math.pi)),
@@ -49,10 +54,8 @@ Container(
 
 ![image](https://lh3.googleusercontent.com/-ZVkaiJmFcAs/W8QGDj7pdKI/AAAAAAAAAME/QJb_f6MKR5gZjbeXizeepoeF9l4Lu7pzQCHMYCw/I/15395236079374.jpg)
 
-
-
-
 ### 然后加动画
+
 Flutter的动画也不复杂，关键词`AnimationController`。
 
 Flutter中的动画是基于`Animation`，这个对象本身是一个抽象类，在一段时间内依次产生一些值。我们使用封装好的`AnimationController`来做动画，它在屏幕刷新的每一帧，产生一个新的值，默认情况是在给定的时间段内线性的生成0.0到1.0的数字。
@@ -62,6 +65,7 @@ Flutter中的动画是基于`Animation`，这个对象本身是一个抽象类�
 `AnimationController`有`addListener`和`addStatusListener`方法可以添加监听，一个是值监听一个是状态监听。值监听常用在调用`setState`来触发UI重建来实现动画，状态监听用在动画状态变化的时候执行一些方法，比如在动画结束时反转动画。
 
 至此我们已经可以绘制动画了，代码如下
+
 ```dart
 class DemoWidget extends StatefulWidget {
   @override
@@ -98,9 +102,11 @@ class _DemoWidgetState extends State<DemoWidget>
 }
 
 ```
+
 ![image](https://lh3.googleusercontent.com/-hNxxHenQ8WE/W8QGDtMV-9I/AAAAAAAAAMI/hRjlhg0QtjUB7GN1gMZjvfjOljQ0LhQzwCHMYCw/I/2018-10-14%252B21-44-24.2018-10-14%252B21_45_53.gif)
 
 可以借助`AnimatedBuilder`改写上文的`initState`和`build`方法，使视图层级更加清楚，有助于封装
+
 ```dart
   @override
   void initState() {
@@ -133,6 +139,7 @@ Curve是一个抽象类表示生成值的曲线, [Curves](https://docs.flutter.i
 这里`Tween`,`Curve`可以使用`chain`,`evaluate`,`transform`和Animation串起来使用
 
 我们可以使用这些更改我们上文的例子，代码如下
+
 ```dart
   @override
   Widget build(BuildContext context) {
@@ -151,15 +158,19 @@ Curve是一个抽象类表示生成值的曲线, [Curves](https://docs.flutter.i
         });
   }
 ```
+
 当然这里第二个参数有更简洁的写法
-```
+
+```dart
   math.sin(_controller.value*math.pi) *math.pi
 ```
+
 显示效果
 
 ![image](https://lh3.googleusercontent.com/-JlYLIHDfyF0/W8QGD9wiICI/AAAAAAAAAMQ/oL3UeI2MxjU_XenZukEusNF_ASWm4BVSwCHMYCw/I/2018-10-14%252B23-18-32.2018-10-14%252B23_19_57.gif)
 
 ### 示例--完成动画
+
 [Github](https://github.com/equweiyu/finish_animation_demo)
 
 ![image](https://lh3.googleusercontent.com/-b7VipeCJkb8/W8QGDyh5qTI/AAAAAAAAAMM/Pa6uLJn5bowuTfmmmAvHZs-weRz9kSesQCHMYCw/I/Jietu20181014-232520-HD.2018-10-14%252B23_28_02.gif)
