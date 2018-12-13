@@ -1,4 +1,12 @@
-# Flutter 中如何绘制动画
+# Flutter自定义完成动画
+
+### 前言
+
+本文分享下自定义完成动画的实现方法，最终的效果图如下
+
+![image](https://lh3.googleusercontent.com/-b7VipeCJkb8/W8QGDyh5qTI/AAAAAAAAAMM/Pa6uLJn5bowuTfmmmAvHZs-weRz9kSesQCHMYCw/I/Jietu20181014-232520-HD.2018-10-14%252B23_28_02.gif)
+
+[源码地址](https://github.com/equweiyu/finish_animation_demo)
 
 ### 首先是绘图
 
@@ -168,9 +176,3 @@ Curve是一个抽象类表示生成值的曲线, [Curves](https://docs.flutter.i
 显示效果
 
 ![image](https://lh3.googleusercontent.com/-JlYLIHDfyF0/W8QGD9wiICI/AAAAAAAAAMQ/oL3UeI2MxjU_XenZukEusNF_ASWm4BVSwCHMYCw/I/2018-10-14%252B23-18-32.2018-10-14%252B23_19_57.gif)
-
-### 示例--完成动画
-
-[Github](https://github.com/equweiyu/finish_animation_demo)
-
-![image](https://lh3.googleusercontent.com/-b7VipeCJkb8/W8QGDyh5qTI/AAAAAAAAAMM/Pa6uLJn5bowuTfmmmAvHZs-weRz9kSesQCHMYCw/I/Jietu20181014-232520-HD.2018-10-14%252B23_28_02.gif)
